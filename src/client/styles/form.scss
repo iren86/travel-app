@@ -1,0 +1,146 @@
+$primary-color: #1B7780;
+$secondary-color: #000;
+$shadow-color: #fff;
+$font-stack: 'Oswald', sans-serif;
+$primary-font-size: 1em;
+
+form {
+
+  .entry_data_block {
+    padding: 1em;
+
+    label {
+      font-size: 1.5em;
+      margin-left: 1em;
+      color: $secondary-color;
+
+      span.required-text {
+        font-size: 0.5em;
+        font-style: italic;
+      }
+    }
+
+    input {
+      display: block;
+      height: 3em;
+      width: 95%;
+      background: #36B9CA;
+      color: $secondary-color;
+      font-size: $primary-font-size;
+      font-family: $font-stack;
+      padding: 0.2em;
+      margin: 1em;
+    }
+
+    span.input-helper {
+      font-size: $primary-font-size;
+      font-family: $font-stack;
+      margin-left: 1em;
+      color: #808080;
+    }
+
+    //
+    //button {
+    //  width: 95%;
+    //  height: 3em;
+    //  background: #36B9CA;
+    //  color: $secondary-color;
+    //  font-size: 1.5em;
+    //  font-family: $font-stack;
+    //  border: none;
+    //  padding: 0.2em;
+    //  margin-left: 1em;
+    //  margin-top: 2em;
+    //  box-shadow: 0 0 0.5em $shadow-color;
+    //  border-radius: 0.5em;
+    //}
+    //
+    ///* Reset style for HTML element on active to have no border*/
+    //input:focus,
+    //button:focus {
+    //  outline: none;
+    //}
+    //
+    //button:hover {
+    //  background-color: #EE5048;
+    //}
+    //
+    //button::-moz-focus-inner {
+    //  border: 0;
+    //}
+    //
+    ///* Style for Placeholder Text*/
+    //::placeholder { /* Firefox, Chrome, Opera */
+    //  color: #808080;
+    //  font-family: $font-stack;
+    //  font-size: $primary-font-size;
+    //  font-style: italic;
+    //}
+    //
+    //:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    //  color: $secondary-color;
+    //  font-family: $font-stack;
+    //}
+    //
+    //::-ms-input-placeholder { /* Microsoft Edge */
+    //  color: $secondary-color;
+    //  font-family: $font-stack;
+    //
+    //}
+
+    /* Style for Placeholder Text*/
+    ::placeholder { /* Firefox, Chrome, Opera */
+      color: #808080;
+      font-family: $font-stack;
+      font-size: $primary-font-size;
+      font-style: italic;
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: $secondary-color;
+      font-family: $font-stack;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+      color: $secondary-color;
+      font-family: $font-stack;
+    }
+
+    input[type=date] {
+      color: #808080;
+      font-size: $primary-font-size;
+      font-family: $font-stack;
+      font-style: italic;
+    }
+  }
+
+  button {
+    width: 95%;
+    height: 3em;
+    background: #36B9CA;
+    color: $secondary-color;
+    font-size: 1.5em;
+    font-family: $font-stack;
+    border: none;
+    padding: 0.2em;
+    margin-left: 1em;
+    margin-top: 2em;
+    box-shadow: 0 0 0.5em $shadow-color;
+    border-radius: 0.5em;
+  }
+
+  /* Reset style for HTML element on active to have no border*/
+  input:focus,
+  button:focus {
+    outline: none;
+  }
+
+  button:hover {
+    background-color: #EE5048;
+  }
+
+  button::-moz-focus-inner {
+    border: 0;
+  }
+
+}
