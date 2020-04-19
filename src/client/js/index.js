@@ -34,7 +34,7 @@ const {
   resultEl,
   countryInfoEl,
   placeInfoEl,
-  daysInfoEl,
+  daysInfoEl
 } = getContext();
 
 const invalidClassName = 'invalid';
@@ -46,15 +46,19 @@ const validClassName = 'valid';
  */
 const onFormSubmitListener = async (e) => {
   subscribeInputEvents();
-  validateInput();
+  validateInput(countryNameEl);
+  validateInput(placeNameEl);
+  validateInput(daysEl);
   if (isFieldValid()) {
     const countryName = countryNameEl.value;
     const placeName = placeNameEl.value;
     const days = daysEl.value;
     await getInfo(countryName, placeName, days).then(function (response) {
-      console.log(`All data is: ${JSON.stringify(response.data)}`);
+      hideData(infoEl);
+      showData(resultEl);
       updateUI(countryInfoEl, response.data.country);
       updateUI(placeInfoEl, response.data.place);
+      updateUI(daysInfoEl, response.data.days);
 
       const weatherBlockCount = response.data.days;
       const weatherDatetimeList = response.data.datetime;
@@ -71,26 +75,13 @@ const onFormSubmitListener = async (e) => {
         weatherIconList,
         weatherDescriptionList
       );
-      //
-      // response.data.datetime.forEach(function (item, index) {
-      //   console.log(`Date is: ${JSON.stringify(item[index])}`);
-      // });
-      // response.data.high_temp.forEach(function (item, index) {
-      //   console.log(`High temp is: ${JSON.stringify(item[index])}`);
-      // });
-      // response.data.low_temp.forEach(function (item, index) {
-      //   console.log(`Low temp is: ${JSON.stringify(item[index])}`);
-      // });
-      // response.data.weather_icon.forEach(function (item, index) {
-      //   console.log(`Weather icon url is: ${JSON.stringify(item[index])}`);
-      // });
-      // response.data.weather_description.forEach(function (item, index) {
-      //   console.log(`Weather description is: ${JSON.stringify(item[index])}`);
-      // });
     });
 
   } else {
-    console.log('Else block');
+    hideData(resultEl);
+    showData(infoEl);
+    infoEl.setAttribute('style', 'color: red;');
+    infoEl.textContent = `Please fill all required fields.`;
   }
 };
 
@@ -136,13 +127,13 @@ const subscribeInputEvents = () => {
 /**
  * Add the class when fields become invalid
  */
-const validateInput = () => {
-  if (placeNameEl.value.length === 0) {
-    addClassName(placeNameEl, invalidClassName);
-    removeClassName(placeNameEl, validClassName);
+const validateInput = (field) => {
+  if (field.value.length === 0) {
+    addClassName(field, invalidClassName);
+    removeClassName(field, validClassName);
   } else {
-    addClassName(placeNameEl, validClassName);
-    removeClassName(placeNameEl, invalidClassName);
+    addClassName(field, validClassName);
+    removeClassName(field, invalidClassName);
   }
 };
 
@@ -175,32 +166,6 @@ const updateUI = (element, value) => {
 /**
  * Build result block
  */
-// const buildWeatherResultBlock = (
-//   count, DateList, highTempList, lowTempList, weatherIconList, weatherDescriptionList
-// ) => {
-//   const weatherContainerListEl = document.querySelector('#weather-container-list');
-//   for (let i = 0; i < count; i++) {
-//     const fragment = document.createDocumentFragment();
-//
-//     const weatherListItem = document.createElement('div');
-//     weatherListItem.setAttribute('class', 'weather-list-item');
-//     console.log(`DateList is: ${JSON.stringify(DateList)}`);
-//     console.log(`DateList "${i}" is: ${JSON.stringify(DateList[i][i])}`);
-//
-//     console.log(`DateList "${1}" is: ${JSON.stringify(DateList[1][1])}`);
-//
-//     const weatherDateBlock = buildWeatherDateBlock(DateList[i][i]);
-//     console.log(`highTempList is: ${JSON.stringify(highTempList)}`);
-//     console.log(`highTempList "${i}" is: ${JSON.stringify(highTempList[i][i])}`);
-//
-//     const weatherInfoBlock = buildWeatherInfoBlock(JSON.stringify(highTempList[i][i]), lowTempList[i][i], weatherIconList[i][i], weatherDescriptionList[i][i]);
-//     weatherListItem.appendChild(weatherDateBlock);
-//     weatherListItem.appendChild(weatherInfoBlock);
-//     fragment.appendChild(weatherListItem);
-//     weatherContainerListEl.appendChild(fragment);
-//   }
-// };
-
 const buildWeatherResultBlock = (
   count, DateList, highTempList, lowTempList, weatherIconList, weatherDescriptionList
 ) => {
@@ -253,9 +218,10 @@ const buildWeatherInfoBlock = (highTempValue, lowTempValue, weatherIconValue, we
   weatherInfoBlock.textContent = 'Weather:';
 
   const fragment = document.createDocumentFragment();
-  const weatherIcon = document.createElement('i');
+  const weatherIcon = document.createElement('img');
   weatherIcon.setAttribute('class', 'weather_icon');
-  weatherIcon.textContent = weatherIconValue;
+  weatherIcon.alt = 'Weather icon';
+  weatherIcon.src = weatherIconValue;
 
   const highTempInfo = document.createElement('div');
   highTempInfo.setAttribute('class', 'high-temp-info');

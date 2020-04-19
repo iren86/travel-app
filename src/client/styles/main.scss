@@ -25,6 +25,7 @@ main {
       margin-bottom: 2em;
 
       label {
+        font-family: $font-stack;
         font-size: 1.5em;
         margin-left: 1em;
         margin-top: 1em;
@@ -42,7 +43,7 @@ main {
 
       #results {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: start;
         margin-left: 1em;
         color: #fff;
@@ -54,8 +55,8 @@ main {
           align-self: flex-start;
 
           #location-img {
-            width: 12em;
-            height: 12em;
+            width: 14em;
+            height: 14em;
             padding: 0;
             margin: 0;
           }
@@ -65,6 +66,23 @@ main {
           display: flex;
           flex-direction: column;
           flex: 1 1 auto;
+
+          #country {
+            display: flex;
+            flex-flow: row;
+            justify-content: start;
+            padding-left: 0.5em;
+            margin-bottom: 1em;
+
+            .country-info {
+              text-align: start;
+              padding-right: 0.5em;
+              margin-left: 1em;
+              font-family: $font-stack;
+              font-size: $primary-font-size;
+              font-style: italic;
+            }
+          }
 
           #place {
             display: flex;
@@ -97,6 +115,71 @@ main {
               font-family: $font-stack;
               font-size: $primary-font-size;
               font-style: italic;
+            }
+          }
+
+          #weather-container-list {
+            display: flex;
+            flex-flow: column;
+            font-family: $font-stack;
+            font-size: $primary-font-size;
+
+            label {
+              font-family: $font-stack;
+              font-size: $primary-font-size;
+              margin-left: 1em;
+              margin-top: 1em;
+              color: #000;
+            }
+
+            .weather-list-item {
+              display: flex;
+              flex-flow: column;
+              list-style-type:none;
+              border: violet;
+              padding-bottom: 2em;
+              margin-top: 2em;
+              justify-content: start;
+              padding-left: 0.5em;
+              margin-bottom: 1em;
+
+              .weather-date-block {
+                display: flex;
+                flex-flow: column;
+                width: 100%;
+                border: red;
+
+                .weather-date-info {
+                  width: 100%;
+                  border: red;
+                }
+              }
+
+              .weather-info-block {
+                display: flex;
+                flex-flow: row;
+                border: green;
+
+                .weather_icon {
+                  width: 2em;
+                  height: 2em;
+                  padding: 0;
+                  margin: 0;
+                  border: green;
+                }
+
+                .high-temp-info {
+                  border: green;
+                }
+
+                .low-temp-info {
+                  border: green;
+                }
+
+                .weather-description {
+                  border: green;
+                }
+              }
             }
           }
         }

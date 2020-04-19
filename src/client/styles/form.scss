@@ -39,55 +39,6 @@ form {
       color: #808080;
     }
 
-    //
-    //button {
-    //  width: 95%;
-    //  height: 3em;
-    //  background: #36B9CA;
-    //  color: $secondary-color;
-    //  font-size: 1.5em;
-    //  font-family: $font-stack;
-    //  border: none;
-    //  padding: 0.2em;
-    //  margin-left: 1em;
-    //  margin-top: 2em;
-    //  box-shadow: 0 0 0.5em $shadow-color;
-    //  border-radius: 0.5em;
-    //}
-    //
-    ///* Reset style for HTML element on active to have no border*/
-    //input:focus,
-    //button:focus {
-    //  outline: none;
-    //}
-    //
-    //button:hover {
-    //  background-color: #EE5048;
-    //}
-    //
-    //button::-moz-focus-inner {
-    //  border: 0;
-    //}
-    //
-    ///* Style for Placeholder Text*/
-    //::placeholder { /* Firefox, Chrome, Opera */
-    //  color: #808080;
-    //  font-family: $font-stack;
-    //  font-size: $primary-font-size;
-    //  font-style: italic;
-    //}
-    //
-    //:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    //  color: $secondary-color;
-    //  font-family: $font-stack;
-    //}
-    //
-    //::-ms-input-placeholder { /* Microsoft Edge */
-    //  color: $secondary-color;
-    //  font-family: $font-stack;
-    //
-    //}
-
     /* Style for Placeholder Text*/
     ::placeholder { /* Firefox, Chrome, Opera */
       color: #808080;
@@ -112,6 +63,15 @@ form {
       font-family: $font-stack;
       font-style: italic;
     }
+
+    input.invalid {
+      border: 0.2em solid red;
+    }
+
+    input.valid {
+      border: none;
+    }
+
   }
 
   button {
