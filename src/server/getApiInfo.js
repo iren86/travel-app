@@ -6,14 +6,13 @@ const fetch = require('cross-fetch');
 async function getApiInfo(url) {
   try {
     const res = await fetch(url);
-    if (res.status >= 400) {
+    if (res.status >= 200 && res.status < 300) {
+      const response = await res.json();
+      console.log(`response API data is ${JSON.stringify(response)}`);
+      return { response };
+    } else {
       throw new Error('Bad response from server');
     }
-    const response = await res.json();
-    console.log(`response API data is ${JSON.stringify(response)}`);
-    return {
-      response
-    };
   } catch (err) {
     console.log(`Error: "${err}"`);
   }

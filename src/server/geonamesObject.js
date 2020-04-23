@@ -15,48 +15,53 @@ async function getGeonamesInfo(request, response, projectData) {
   const geonameData = await getApiInfo(geonameApiURL);
   console.log(`geoname response API data is ${JSON.stringify(geonameData)}`);
 
-  const allDataList = geonameData.response.geonames[0];
+  if (geonameData.response.geonames.length > 0){
+    const allDataList = geonameData.response.geonames[0];
 
-  let geoCountry = allDataList.countryName;
-  if (geoCountry) {
-    console.log(`Country name is: ${geoCountry}`);
-    projectData.country = geoCountry;
-  } else {
-    console.log(`Country name undefined`);
-  }
+    let geoCountry = allDataList.countryName;
+    if (geoCountry) {
+      console.log(`Country name is: ${geoCountry}`);
+      projectData.country = geoCountry;
+    } else {
+      console.log(`Country name undefined`);
+    }
 
-  let geoPlace = allDataList.name;
-  if (geoPlace) {
-    console.log(`Place name is: ${geoPlace}`);
-    projectData.place = geoPlace;
-  } else {
-    console.log(`Place name undefined`);
-  }
+    let geoPlace = allDataList.name;
+    if (geoPlace) {
+      console.log(`Place name is: ${geoPlace}`);
+      projectData.place = geoPlace;
+    } else {
+      console.log(`Place name undefined`);
+    }
 
-  let geoLatitude = allDataList.lat;
-  if (geoLatitude) {
-    console.log(`Latitude is: ${geoLatitude}`);
-    projectData.latitude = geoLatitude;
-  } else {
-    console.log(`Latitude undefined`);
-  }
+    let geoLatitude = allDataList.lat;
+    if (geoLatitude) {
+      console.log(`Latitude is: ${geoLatitude}`);
+      projectData.latitude = geoLatitude;
+    } else {
+      console.log(`Latitude undefined`);
+    }
 
-  let geoLongitude = allDataList.lng;
-  if (geoLongitude) {
-    console.log(`Longitude is: ${geoLongitude}`);
-    projectData.longitude = geoLongitude;
-  } else {
-    console.log(`Longitude undefined`);
-  }
+    let geoLongitude = allDataList.lng;
+    if (geoLongitude) {
+      console.log(`Longitude is: ${geoLongitude}`);
+      projectData.longitude = geoLongitude;
+    } else {
+      console.log(`Longitude undefined`);
+    }
 
-  let userDays = request.query.days;
-  if (userDays) {
-    console.log(`Number of days: ${userDays}`);
-    projectData.days = userDays;
+    let userDays = request.query.days;
+    if (userDays) {
+      console.log(`Number of days: ${userDays}`);
+      projectData.days = userDays;
+    } else {
+      console.log(`Number of days undefined`);
+    }
+    await getWeatherbitInfo(response, projectData);
   } else {
-    console.log(`Number of days undefined`);
+    console.log('Geoname data empty');
+    response.sendStatus(404);
   }
-  await getWeatherbitInfo(response, projectData);
 }
 
 module.exports = getGeonamesInfo;

@@ -81,57 +81,57 @@ main {
           #country {
             display: flex;
             flex-flow: row;
-            justify-content: start;
             padding-left: 0.5em;
             margin-bottom: 1em;
             width: 100%;
+            justify-content: space-between;
 
             .country-info {
-              text-align: start;
+              text-align: left;
               padding-right: 0.5em;
               margin-left: 1em;
               font-family: $font-stack;
               font-size: $primary-font-size;
               font-style: italic;
-              width: 60%;
+              width: 80%;
             }
           }
 
           #place {
             display: flex;
             flex-flow: row;
-            justify-content: start;
             padding-left: 0.5em;
             margin-bottom: 1em;
             width: 100%;
+            justify-content: space-between;
 
             .place-info {
-              text-align: start;
+              text-align: left;
               padding-right: 0.5em;
               margin-left: 1em;
               font-family: $font-stack;
               font-size: $primary-font-size;
               font-style: italic;
-              width: 60%;
+              width: 80%;
             }
           }
 
           #days {
             display: flex;
             flex-flow: row;
-            justify-content: start;
             padding-left: 0.5em;
             margin-bottom: 1em;
             width: 100%;
+            justify-content: space-between;
 
             .days-info {
-              text-align: start;
+              text-align: left;
               padding-right: 0.5em;
               margin-left: 1em;
               font-family: $font-stack;
               font-size: $primary-font-size;
               font-style: italic;
-              width: 60%;
+              width: 80%;
             }
           }
 

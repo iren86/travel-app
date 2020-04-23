@@ -37,50 +37,52 @@ const {
   locationImgEl
 } = getContext();
 
-// const invalidClassName = 'invalid';
-// const validClassName = 'valid';
-
 /**
  * Function called by event listener
  * Update UI with all data
  */
 const onFormSubmitListener = async (e) => {
   const requiredFields = [countryNameEl, placeNameEl, daysEl];
-  requiredFields.forEach((el) => {console.log(el); subscribeInputEvents(el)});
-  requiredFields.forEach((el) => {console.log(el); validateInput(el)});
+  requiredFields.forEach((el) => {subscribeInputEvents(el)});
+  requiredFields.forEach((el) => {validateInput(el)});
   validateNumInput(daysEl);
   if (isFieldValid(countryNameEl) && isFieldValid(placeNameEl) && isFieldValid(daysEl)) {
     const countryName = countryNameEl.value;
     const placeName = placeNameEl.value;
     const days = daysEl.value;
     await getInfo(countryName, placeName, days).then(function (response) {
-      hideData(infoEl);
-      showData(resultEl);
-      updateUI(countryInfoEl, response.data.country);
-      updateUI(placeInfoEl, response.data.place);
-      updateUI(daysInfoEl, response.data.days);
+      console.log(`response is: ${JSON.stringify(response)}`);
+      if (!(response === 404)){
+        hideData(infoEl);
+        showData(resultEl);
+        updateUI(countryInfoEl, response.country);
+        updateUI(placeInfoEl, response.place);
+        updateUI(daysInfoEl, response.days);
 
-      const weatherBlockCount = response.data.days;
-      const weatherDatetimeList = response.data.datetime;
-      const weatherHighTempList = response.data.high_temp;
-      const weatherLowTempList = response.data.low_temp;
-      const weatherIconList = response.data.weather_icon;
-      const weatherDescriptionList = response.data.weather_description;
+        const weatherBlockCount = response.days;
+        const weatherDatetimeList = response.datetime;
+        const weatherHighTempList = response.high_temp;
+        const weatherLowTempList = response.low_temp;
+        const weatherIconList = response.weather_icon;
+        const weatherDescriptionList = response.weather_description;
 
-      // locationImgEl.src = response.data.photo_url;
-      // locationImgEl.setAttribute(
-      //   'style',
-      //   'width: 100%; height: 50%; padding: 0.5em; border: 1px solid #ddd; background: white;'
-      // );
+        buildImageResultBlock(response.photo_url);
 
-      buildWeatherResultBlock(
-        weatherBlockCount,
-        weatherDatetimeList,
-        weatherHighTempList,
-        weatherLowTempList,
-        weatherIconList,
-        weatherDescriptionList
-      );
+        buildWeatherResultBlock(
+          weatherBlockCount,
+          weatherDatetimeList,
+          weatherHighTempList,
+          weatherLowTempList,
+          weatherIconList,
+          weatherDescriptionList
+        );
+      } else {
+        hideData(resultEl);
+        showData(infoEl);
+        infoEl.setAttribute('style', 'color: red;');
+        infoEl.textContent = `Couldn't find  such country or place. Please double check your input.
+        `;
+      }
     });
 
   } else {
@@ -97,7 +99,7 @@ const onFormSubmitListener = async (e) => {
 document.querySelector('#submit_button').addEventListener('click', onFormSubmitListener);
 
 /**
- * Function to GET data from server and update UI
+ * Function to GET data from server
  */
 const getInfo = async (country_name, place_name, days) => {
   const params = {
@@ -105,17 +107,29 @@ const getInfo = async (country_name, place_name, days) => {
     place_name: place_name,
     days: days
   };
-  const request = await fetch(`http://localhost:7000/geo-info?${stringify(params)}`);
   try {
+    const request = await fetch(`http://localhost:7000/geo-info?${stringify(params)}`);
+    if (request.status === 404) {
+      return request.status
+    }
     const response = await request.json();
     console.log(`All data from server is: ${JSON.stringify(response)}`);
-    return {
-      data: response
-    };
-
+    return response;
   } catch (error) {
     console.log('error', error);
   }
+};
+
+/**
+ * Build result block
+ */
+const buildImageResultBlock = (url) => {
+  locationImgEl.src = "";
+  locationImgEl.src = url;
+  locationImgEl.setAttribute(
+    'style',
+    'width: 100%; height: 50%; padding: 0.5em; border: 1px solid #ddd; background: white;'
+  );
 };
 
 /**
@@ -126,7 +140,6 @@ const buildWeatherResultBlock = (
 ) => {
   const weatherContainerListEl = document.querySelector('#weather-container-list');
   weatherContainerListEl.innerHTML = '';
-  // console.log(`weatherContainerListEl innerHTML is: ${JSON.stringify(weatherContainerListEl.innerHTML)}`);
 
   const mainFragment = document.createDocumentFragment();
 
@@ -168,9 +181,7 @@ const buildWeatherDateBlock = (DateValue) => {
     'display: block; ' +
     'background: white; ' +
     'width: 100%; ' +
-    'padding-right: 1em; ' +
-    'padding-top: 0.5em; ' +
-    'padding-bottom: 0.5em; ' +
+    'padding: 0.5em; ' +
     'color: black; ' +
     'font-family: Oswald, sans-serif;' +
     'font-size: 1em; '
@@ -206,7 +217,7 @@ const buildWeatherInfoBlock = (highTempValue, lowTempValue, weatherIconValue, we
   weatherIcon.src = weatherIconValue;
   weatherIcon.setAttribute(
     'style',
-    'width: 5em; height: 5em; align-self: center; align-content: center;'
+    'width: 5em; height: 5em; align-self: center; align-content: center; padding-left: 0.5em;'
   );
 
   const highTempInfo = document.createElement('div');
