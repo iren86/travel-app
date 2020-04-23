@@ -10,6 +10,7 @@ const getContext = () => {
   const countryInfoEl = document.querySelector('.country-info');
   const placeInfoEl = document.querySelector('.place-info');
   const daysInfoEl = document.querySelector('.days-info');
+  const locationImgEl = document.querySelector('#location-img');
 
   return {
     countryNameEl,
@@ -20,6 +21,7 @@ const getContext = () => {
     countryInfoEl,
     placeInfoEl,
     daysInfoEl,
+    locationImgEl
   };
 };
 

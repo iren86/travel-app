@@ -24,7 +24,7 @@ form {
       display: block;
       height: 3em;
       width: 95%;
-      background: #36B9CA;
+      background: white;
       color: $secondary-color;
       font-size: $primary-font-size;
       font-family: $font-stack;
@@ -77,15 +77,16 @@ form {
   button {
     width: 95%;
     height: 3em;
-    background: #36B9CA;
-    color: $secondary-color;
-    font-size: 1.5em;
+    background: white;
+    color: #36B9CA;
+    font-size: 2em;
+    font-weight: bold;
     font-family: $font-stack;
     border: none;
     padding: 0.2em;
     margin-left: 1em;
     margin-top: 2em;
-    box-shadow: 0 0 0.5em $shadow-color;
+    box-shadow: 0 0 1em black;
     border-radius: 0.5em;
   }
 
@@ -96,11 +97,12 @@ form {
   }
 
   button:hover {
-    background-color: #EE5048;
+    background-color: #36B9CA;
+    color: black;
+    box-shadow: 0 0 1em white;
   }
 
   button::-moz-focus-inner {
     border: 0;
   }
-
 }

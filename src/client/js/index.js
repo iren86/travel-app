@@ -6,18 +6,17 @@ import '../styles/footer.scss';
 import logo from '../image/logo.png';
 import { stringify } from 'query-string';
 import { getContext } from './getContext.js';
-import { addClassName, removeClassName, hideData, showData } from './updateUI.js';
+import { hideData, showData, updateUI } from './updateUI.js';
+import { subscribeInputEvents, validateInput, validateNumInput, isFieldValid } from './validateUI.js';
 
-if (process.env.NODE_ENV !== 'production') {
-  console.log('Looks like we are in development mode!');
-}
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+  console.log(`Looks like we are in ${process.env.NODE_ENV} mode!`);
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../../worker.js').then(function (registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }).catch(function (err) {
-      // registration failed :(
+      // registration failed
       console.log('ServiceWorker registration failed: ', err);
     });
   }
@@ -34,22 +33,23 @@ const {
   resultEl,
   countryInfoEl,
   placeInfoEl,
-  daysInfoEl
+  daysInfoEl,
+  locationImgEl
 } = getContext();
 
-const invalidClassName = 'invalid';
-const validClassName = 'valid';
+// const invalidClassName = 'invalid';
+// const validClassName = 'valid';
 
 /**
  * Function called by event listener
  * Update UI with all data
  */
 const onFormSubmitListener = async (e) => {
-  subscribeInputEvents();
-  validateInput(countryNameEl);
-  validateInput(placeNameEl);
-  validateInput(daysEl);
-  if (isFieldValid()) {
+  const requiredFields = [countryNameEl, placeNameEl, daysEl];
+  requiredFields.forEach((el) => {console.log(el); subscribeInputEvents(el)});
+  requiredFields.forEach((el) => {console.log(el); validateInput(el)});
+  validateNumInput(daysEl);
+  if (isFieldValid(countryNameEl) && isFieldValid(placeNameEl) && isFieldValid(daysEl)) {
     const countryName = countryNameEl.value;
     const placeName = placeNameEl.value;
     const days = daysEl.value;
@@ -66,6 +66,12 @@ const onFormSubmitListener = async (e) => {
       const weatherLowTempList = response.data.low_temp;
       const weatherIconList = response.data.weather_icon;
       const weatherDescriptionList = response.data.weather_description;
+
+      locationImgEl.src = response.data.photo_url;
+      locationImgEl.setAttribute(
+        'style',
+        'width: 100%; height: 50%; padding: 0.5em; border: 1px solid #ddd; background: white;'
+      );
 
       buildWeatherResultBlock(
         weatherBlockCount,
@@ -113,70 +119,31 @@ const getInfo = async (country_name, place_name, days) => {
 };
 
 /**
- * Function to subscribe for input events
- */
-const subscribeInputEvents = () => {
-  placeNameEl.addEventListener('input', (event) => {
-    if (placeNameEl.validity.valid) {
-      removeClassName(placeNameEl, invalidClassName);
-      addClassName(placeNameEl, validClassName);
-    }
-  });
-};
-
-/**
- * Add the class when fields become invalid
- */
-const validateInput = (field) => {
-  if (field.value.length === 0) {
-    addClassName(field, invalidClassName);
-    removeClassName(field, validClassName);
-  } else {
-    addClassName(field, validClassName);
-    removeClassName(field, invalidClassName);
-  }
-};
-
-/**
- * Function to get list with valid/invalid flags
- */
-const getRequiredFlag = () => {
-  if (placeNameEl.classList.contains(validClassName)) {
-    return validClassName;
-  } else {
-    return invalidClassName;
-  }
-};
-
-/**
- * Function to check if field valid
- */
-const isFieldValid = () => {
-  const flag = getRequiredFlag();
-  return flag === validClassName;
-};
-
-/**
- * Function to update UI
- */
-const updateUI = (element, value) => {
-  element.innerHTML = value;
-};
-
-/**
  * Build result block
  */
 const buildWeatherResultBlock = (
   count, DateList, highTempList, lowTempList, weatherIconList, weatherDescriptionList
 ) => {
   const weatherContainerListEl = document.querySelector('#weather-container-list');
+  weatherContainerListEl.innerHTML = '';
+  // console.log(`weatherContainerListEl innerHTML is: ${JSON.stringify(weatherContainerListEl.innerHTML)}`);
+
   const mainFragment = document.createDocumentFragment();
 
   for (let i = 0; i < count; i++) {
     const fragment = document.createDocumentFragment();
-    console.log(`weatherBlockCount is ${count}`);
     const weatherListItem = document.createElement('li');
     weatherListItem.setAttribute('class', `weather-list-item`);
+    weatherListItem.setAttribute(
+      'style',
+      'display: flex; ' +
+      'flex-direction: column; ' +
+      'background: #FFBE58; ' +
+      'width: 95%; ' +
+      'padding-top: 1em; ' +
+      'list-style-type: none; ' +
+      'border-radius: 20%; '
+    );
 
     const weatherDateBlock = buildWeatherDateBlock(DateList[i][i]);
 
@@ -185,7 +152,6 @@ const buildWeatherResultBlock = (
     fragment.appendChild(weatherInfoBlock);
     weatherListItem.appendChild(fragment);
     mainFragment.appendChild(weatherListItem);
-    // debugger;
   }
   weatherContainerListEl.appendChild(mainFragment);
 };
@@ -196,15 +162,19 @@ const buildWeatherResultBlock = (
 const buildWeatherDateBlock = (DateValue) => {
   const weatherDateBlock = document.createElement('div');
   weatherDateBlock.setAttribute('id', 'weather-date-block');
-  weatherDateBlock.textContent = 'Date:';
-
-  const fragment = document.createDocumentFragment();
-  const dateInfo = document.createElement('div');
-  dateInfo.setAttribute('class', 'weather-date-info');
-  dateInfo.textContent = DateValue;
-
-  fragment.appendChild(dateInfo);
-  weatherDateBlock.appendChild(fragment);
+  weatherDateBlock.textContent = `Date: ${DateValue}`;
+  weatherDateBlock.setAttribute(
+    'style',
+    'display: block; ' +
+    'background: white; ' +
+    'width: 100%; ' +
+    'padding-right: 1em; ' +
+    'padding-top: 0.5em; ' +
+    'padding-bottom: 0.5em; ' +
+    'color: black; ' +
+    'font-family: Oswald, sans-serif;' +
+    'font-size: 1em; '
+  );
 
   return weatherDateBlock;
 };
@@ -215,25 +185,53 @@ const buildWeatherDateBlock = (DateValue) => {
 const buildWeatherInfoBlock = (highTempValue, lowTempValue, weatherIconValue, weatherDescriptionValue) => {
   const weatherInfoBlock = document.createElement('div');
   weatherInfoBlock.setAttribute('id', 'weather-info-block');
-  weatherInfoBlock.textContent = 'Weather:';
+  weatherInfoBlock.setAttribute(
+    'style',
+    'display: flex;' +
+    'flex-direction : row; ' +
+    'background: #36B9CA; ' +
+    'width: 100%; ' +
+    'margin-bottom: 1em; ' +
+    'padding-right: 1em; ' +
+    'color: black; ' +
+    'font-family: Oswald, sans-serif;' +
+    'font-size: 1em; ' +
+    'justify-content: space-between'
+  );
 
   const fragment = document.createDocumentFragment();
   const weatherIcon = document.createElement('img');
   weatherIcon.setAttribute('class', 'weather_icon');
   weatherIcon.alt = 'Weather icon';
   weatherIcon.src = weatherIconValue;
+  weatherIcon.setAttribute(
+    'style',
+    'width: 5em; height: 5em; align-self: center; align-content: center;'
+  );
 
   const highTempInfo = document.createElement('div');
   highTempInfo.setAttribute('class', 'high-temp-info');
-  highTempInfo.textContent = highTempValue;
+  highTempInfo.textContent = `${highTempValue} ` + 'ºC';
+  highTempInfo.setAttribute(
+    'style',
+    'width: 25%; align-self: center; align-content: center; text-align: center;'
+  );
 
   const lowTempInfo = document.createElement('div');
   lowTempInfo.setAttribute('class', 'low-temp-info');
-  lowTempInfo.textContent = lowTempValue;
+  lowTempInfo.textContent = `${lowTempValue} ` + 'ºC';
+  lowTempInfo.setAttribute(
+    'style',
+    'width: 25%; align-self: center; align-content: center; text-align: center;'
+  );
 
   const weatherDescription = document.createElement('div');
   weatherDescription.setAttribute('class', 'weather-description');
   weatherDescription.textContent = weatherDescriptionValue;
+  weatherDescription.setAttribute(
+    'style',
+    'width: 25%; align-self: center; align-content: center; text-align: center;'
+  );
 
   fragment.appendChild(weatherIcon);
   fragment.appendChild(highTempInfo);

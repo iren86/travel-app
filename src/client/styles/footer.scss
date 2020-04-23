@@ -1,11 +1,14 @@
 footer {
   grid-area: footer;
-  display: flex;
-  flex-direction: row;
-  //height: max-content;
   width: 100%;
   background: #000;
+  color: white;
+  padding: 2em;
   margin: 0;
-  height: 100%;
-  justify-content: flex-end;
+  position: absolute;
+  height: 3em;
+
+  label {
+    font-size: 1.5em;
+  }
 }

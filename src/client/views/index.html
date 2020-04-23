@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Travel Planer App</title>
@@ -30,10 +30,10 @@
                         <div class="entry_data_block">
                             <label for="days_input">Enter number of days here <span
                                     class="required-text">(required)</span></label>
-                            <input id="days_input" type="text">
-                            <span class="input-helper">Helper Text</span>
+                            <input id="days_input" type="number" min="1" max="16" maxlength="2" placeholder="enter number of days here">
+                            <span class="input-helper">max 16 days</span>
                         </div>
-                        <button id="submit_button" type="button"> Generate</button>
+                        <button id="submit_button" type="button">Submit</button>
                     </form>
                     <div id="app-data-block">
                         <label for="app-data-block">Your Result:</label>
@@ -42,7 +42,7 @@
                         </div>
                         <div id="results" style="display: none;">
                             <div id="img-container">
-                                <img id="location-img">
+                                <img id="location-img" alt="Location photo">
                             </div>
                             <div id="info-container">
                                 <div id="country">Your country:
@@ -54,27 +54,16 @@
                                 <div id="days">Your number of days:
                                     <div class="days-info"></div>
                                 </div>
+                                <label for="weather-container-list">Weather forecast:</label>
                                 <div id="weather-container-list">
-                                    <label for="weather-container-list">Weather forecast:</label>
-<!--                                    <div class="weather-list-item">-->
-<!--                                        <div class="weather-date-block">Date:-->
-<!--                                            <div class="weather-date-info"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="weather-info-block">Weather:-->
-<!--                                            <img class="weather_icon">-->
-<!--                                            <div class="high-temp-info">high temp info</div>-->
-<!--                                            <div class="low-temp-info">low temp info</div>-->
-<!--                                            <div class="weather-description">Test description</div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </main>
-            <footer>
-                <p>This is a footer</p>
+            <footer id="footer-container">
+                <label for="footer-container">This is a footer</label>
             </footer>
         </div>
     </body>

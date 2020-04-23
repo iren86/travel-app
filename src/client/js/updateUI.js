@@ -26,4 +26,11 @@ const showData = (el) => {
   el.style.display = '';
 };
 
-export { addClassName, removeClassName, hideData, showData };
+/**
+ * Function to update UI
+ */
+const updateUI = (element, value) => {
+  element.innerHTML = value;
+};
+
+export { addClassName, removeClassName, hideData, showData, updateUI };
