@@ -6,7 +6,7 @@ const getApiInfo = require('./getApiInfo.js');
 async function getPixabayInfo(response, projectData) {
   const pixabayApiKey = process.env.API_PIXABAY_KEY;
   const pixabayBaseURL = 'https://pixabay.com/api/?';
-  const pixabayApiURL = `${pixabayBaseURL}key=${pixabayApiKey}&q=Vyshhorod&category=places&category=travel&image_type=photo`;
+  const pixabayApiURL = `${pixabayBaseURL}key=${pixabayApiKey}&q=${projectData.place}&category=places&category=travel&image_type=photo`;
   console.log(`pixabay API url is ${pixabayApiURL}`);
 
   const pixabay = await getApiInfo(pixabayApiURL);
