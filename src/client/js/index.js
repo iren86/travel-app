@@ -67,11 +67,11 @@ const onFormSubmitListener = async (e) => {
       const weatherIconList = response.data.weather_icon;
       const weatherDescriptionList = response.data.weather_description;
 
-      locationImgEl.src = response.data.photo_url;
-      locationImgEl.setAttribute(
-        'style',
-        'width: 100%; height: 50%; padding: 0.5em; border: 1px solid #ddd; background: white;'
-      );
+      // locationImgEl.src = response.data.photo_url;
+      // locationImgEl.setAttribute(
+      //   'style',
+      //   'width: 100%; height: 50%; padding: 0.5em; border: 1px solid #ddd; background: white;'
+      // );
 
       buildWeatherResultBlock(
         weatherBlockCount,

@@ -61,6 +61,14 @@ main {
           object-fit: cover;
           margin-top: 1em;
           margin-bottom: 1em;
+
+          img {
+            width: 100%;
+            height: 50%;
+            padding: 0.5em;
+            border: 1px solid #ddd;
+            background: white;
+          }
         }
 
         #info-container {
