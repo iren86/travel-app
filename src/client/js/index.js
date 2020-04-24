@@ -43,8 +43,8 @@ const {
  */
 const onFormSubmitListener = async (e) => {
   const requiredFields = [countryNameEl, placeNameEl, daysEl];
-  requiredFields.forEach((el) => {subscribeInputEvents(el)});
-  requiredFields.forEach((el) => {validateInput(el)});
+  requiredFields.forEach((el) => {subscribeInputEvents(el);});
+  requiredFields.forEach((el) => {validateInput(el);});
   validateNumInput(daysEl);
   if (isFieldValid(countryNameEl) && isFieldValid(placeNameEl) && isFieldValid(daysEl)) {
     const countryName = countryNameEl.value;
@@ -52,7 +52,7 @@ const onFormSubmitListener = async (e) => {
     const days = daysEl.value;
     await getInfo(countryName, placeName, days).then(function (response) {
       console.log(`response is: ${JSON.stringify(response)}`);
-      if (!(response === 404)){
+      if (!(response === 404)) {
         hideData(infoEl);
         showData(resultEl);
         updateUI(countryInfoEl, response.country);
@@ -108,9 +108,11 @@ const getInfo = async (country_name, place_name, days) => {
     days: days
   };
   try {
-    const request = await fetch(`http://localhost:7000/geo-info?${stringify(params)}`);
+    const request = await fetch(
+      `http://localhost:7000/geo-info?country_name=${country_name}&place_name=${place_name}&days=${days}`
+    );
     if (request.status === 404) {
-      return request.status
+      return request.status;
     }
     const response = await request.json();
     console.log(`All data from server is: ${JSON.stringify(response)}`);
@@ -124,7 +126,7 @@ const getInfo = async (country_name, place_name, days) => {
  * Build result block
  */
 const buildImageResultBlock = (url) => {
-  locationImgEl.src = "";
+  locationImgEl.src = '';
   locationImgEl.src = url;
   locationImgEl.setAttribute(
     'style',
