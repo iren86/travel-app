@@ -1,0 +1,24 @@
+@media screen and (min-device-width: 1281px) {
+  main {
+
+    section#user-entry-data-block {
+      flex-direction: row;
+      border-radius: 0;
+      padding-top: 1em;
+
+      #app-data-block {
+        grid-area: result-data;
+        text-align: left;
+        justify-items: left;
+        padding-top: 1em;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+
+        label {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

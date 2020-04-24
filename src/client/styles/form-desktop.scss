@@ -1,0 +1,22 @@
+@media screen and (min-device-width: 1281px) {
+  form {
+    grid-area: entry-data;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5em;
+    height: 100%;
+    width: 100%;
+
+    .entry_data_block {
+      align-self: center;
+      width: 75%;
+    }
+
+    button {
+      width: 75%;
+      align-self: center;
+      margin-left: 0.1em;
+    }
+
+  }
+}

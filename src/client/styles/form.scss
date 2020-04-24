@@ -1,18 +1,17 @@
-$primary-color: #1B7780;
-$secondary-color: #000;
-$shadow-color: #fff;
+$primary-color: #000;
+$secondary-color: #fff;
 $font-stack: 'Oswald', sans-serif;
 $primary-font-size: 1em;
+$secondary-font-size: 1.5em;
 
 form {
-
   .entry_data_block {
     padding: 1em;
 
     label {
-      font-size: 1.5em;
+      font-size: $secondary-font-size;
       margin-left: 1em;
-      color: $secondary-color;
+      color: $primary-color;
 
       span.required-text {
         font-size: 0.5em;
@@ -24,8 +23,8 @@ form {
       display: block;
       height: 3em;
       width: 95%;
-      background: white;
-      color: $secondary-color;
+      background: $secondary-color;
+      color: $primary-color;
       font-size: $primary-font-size;
       font-family: $font-stack;
       padding: 0.2em;
@@ -48,12 +47,12 @@ form {
     }
 
     :-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: $secondary-color;
+      color: $primary-color;
       font-family: $font-stack;
     }
 
     ::-ms-input-placeholder { /* Microsoft Edge */
-      color: $secondary-color;
+      color: $primary-color;
       font-family: $font-stack;
     }
 
@@ -77,7 +76,7 @@ form {
   button {
     width: 95%;
     height: 3em;
-    background: white;
+    background: $secondary-color;
     color: #36B9CA;
     font-size: 2em;
     font-weight: bold;
@@ -86,7 +85,7 @@ form {
     padding: 0.2em;
     margin-top: 1em;
     margin-left: 0.7em;
-    box-shadow: 0 0 1em black;
+    box-shadow: 0 0 1em $primary-color;
     border-radius: 0.5em;
   }
 
@@ -98,8 +97,8 @@ form {
 
   button:hover {
     background-color: #36B9CA;
-    color: black;
-    box-shadow: 0 0 1em white;
+    color: $primary-color;
+    box-shadow: 0 0 1em $secondary-color;
   }
 
   button::-moz-focus-inner {

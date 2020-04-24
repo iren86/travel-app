@@ -1,5 +1,4 @@
 $primary-color: #000;
-$secondary-color: #fff;
 
 header {
   grid-area: header;
@@ -13,7 +12,7 @@ header {
   background-color: $primary-color;
 
   img {
-    width: 14em;
+    width: 12em;
     height: 12em;
     padding: 0;
     margin: 0;

@@ -1,10 +1,13 @@
 import '../styles/base.scss';
+import '../styles/base-desktop.scss';
 import '../styles/header.scss';
+import '../styles/header-desktop.scss';
 import '../styles/main.scss';
+import '../styles/main-desktop.scss';
 import '../styles/form.scss';
+import '../styles/form-desktop.scss';
 import '../styles/footer.scss';
 import logo from '../image/logo.png';
-import { stringify } from 'query-string';
 import { getContext } from './getContext.js';
 import { hideData, showData, updateUI } from './updateUI.js';
 import { subscribeInputEvents, validateInput, validateNumInput, isFieldValid } from './validateUI.js';
