@@ -4,104 +4,107 @@ $font-stack: 'Oswald', sans-serif;
 $primary-font-size: 1em;
 $secondary-font-size: 1.5em;
 
-form {
-  .entry_data_block {
-    padding: 1em;
+// Common rules for tablet and desktop
+@media screen and (max-device-width: 1280px) {
+  form {
+    .entry_data_block {
+      padding: 1em;
 
-    label {
-      font-size: $secondary-font-size;
-      margin-left: 1em;
-      color: $primary-color;
+      label {
+        font-size: $secondary-font-size;
+        margin-left: 1em;
+        color: $primary-color;
 
-      span.required-text {
-        font-size: 0.5em;
+        span.required-text {
+          font-size: 0.5em;
+          font-style: italic;
+        }
+      }
+
+      input {
+        display: block;
+        height: 3em;
+        width: 95%;
+        background: $secondary-color;
+        color: $primary-color;
+        font-size: $primary-font-size;
+        font-family: $font-stack;
+        padding: 0.2em;
+        margin: 1em;
+      }
+
+      span.input-helper {
+        font-size: $primary-font-size;
+        font-family: $font-stack;
+        margin-left: 1em;
+        color: #808080;
+      }
+
+      /* Style for Placeholder Text*/
+      ::placeholder { /* Firefox, Chrome, Opera */
+        color: #808080;
+        font-family: $font-stack;
+        font-size: $primary-font-size;
         font-style: italic;
       }
+
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $primary-color;
+        font-family: $font-stack;
+      }
+
+      ::-ms-input-placeholder { /* Microsoft Edge */
+        color: $primary-color;
+        font-family: $font-stack;
+      }
+
+      input[type=date] {
+        color: #808080;
+        font-size: $primary-font-size;
+        font-family: $font-stack;
+        font-style: italic;
+      }
+
+      input.invalid {
+        border: 0.2em solid red;
+      }
+
+      input.valid {
+        border: none;
+      }
+
     }
 
-    input {
-      display: block;
-      height: 3em;
+    button {
       width: 95%;
+      height: 3em;
       background: $secondary-color;
-      color: $primary-color;
-      font-size: $primary-font-size;
+      color: #36B9CA;
+      font-size: 2em;
+      font-weight: bold;
       font-family: $font-stack;
-      padding: 0.2em;
-      margin: 1em;
-    }
-
-    span.input-helper {
-      font-size: $primary-font-size;
-      font-family: $font-stack;
-      margin-left: 1em;
-      color: #808080;
-    }
-
-    /* Style for Placeholder Text*/
-    ::placeholder { /* Firefox, Chrome, Opera */
-      color: #808080;
-      font-family: $font-stack;
-      font-size: $primary-font-size;
-      font-style: italic;
-    }
-
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: $primary-color;
-      font-family: $font-stack;
-    }
-
-    ::-ms-input-placeholder { /* Microsoft Edge */
-      color: $primary-color;
-      font-family: $font-stack;
-    }
-
-    input[type=date] {
-      color: #808080;
-      font-size: $primary-font-size;
-      font-family: $font-stack;
-      font-style: italic;
-    }
-
-    input.invalid {
-      border: 0.2em solid red;
-    }
-
-    input.valid {
       border: none;
+      padding: 0.2em;
+      margin-top: 1em;
+      margin-left: 0.7em;
+      box-shadow: 0 0 1em $primary-color;
+      border-radius: 0.5em;
     }
 
-  }
+    /* Reset style for HTML element on active to have no border*/
+    input:focus,
+    button:focus {
+      outline: none;
+    }
 
-  button {
-    width: 95%;
-    height: 3em;
-    background: $secondary-color;
-    color: #36B9CA;
-    font-size: 2em;
-    font-weight: bold;
-    font-family: $font-stack;
-    border: none;
-    padding: 0.2em;
-    margin-top: 1em;
-    margin-left: 0.7em;
-    box-shadow: 0 0 1em $primary-color;
-    border-radius: 0.5em;
-  }
+    button:hover {
+      background-color: #36B9CA;
+      color: $primary-color;
+      box-shadow: 0 0 1em $secondary-color;
+    }
 
-  /* Reset style for HTML element on active to have no border*/
-  input:focus,
-  button:focus {
-    outline: none;
-  }
-
-  button:hover {
-    background-color: #36B9CA;
-    color: $primary-color;
-    box-shadow: 0 0 1em $secondary-color;
-  }
-
-  button::-moz-focus-inner {
-    border: 0;
+    button::-moz-focus-inner {
+      border: 0;
+    }
   }
 }
