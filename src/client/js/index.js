@@ -105,11 +105,6 @@ document.querySelector('#submit_button').addEventListener('click', onFormSubmitL
  * Function to GET data from server
  */
 const getInfo = async (country_name, place_name, days) => {
-  const params = {
-    country_name: country_name,
-    place_name: place_name,
-    days: days
-  };
   try {
     const request = await fetch(
       `http://localhost:7000/geo-info?country_name=${country_name}&place_name=${place_name}&days=${days}`
