@@ -1,6 +1,7 @@
 require('path');
 const express = require('express');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 dotenv.config({ path: './process.env' });
 const getGeonamesInfo = require('./geonamesObject');
 
@@ -8,11 +9,6 @@ const getGeonamesInfo = require('./geonamesObject');
  * Require Express to run server and routes
  */
 const app = express();
-
-/**
- * Dependencies
- */
-const bodyParser = require('body-parser');
 
 /**
  * Middleware
@@ -40,7 +36,7 @@ const port = 7000;
 /**
  * Spin up the server
  */
-app.listen(port, listening);
+const server = app.listen(port, listening);
 
 function listening() {
   console.log(`running on localhost: ${port}`);
@@ -66,3 +62,5 @@ async function getInfo(request, response) {
 }
 
 app.get('/geo-info', getInfo);
+
+module.exports = server;
