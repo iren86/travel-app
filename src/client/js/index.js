@@ -54,7 +54,6 @@ const onFormSubmitListener = async (e) => {
     const placeName = placeNameEl.value;
     const days = daysEl.value;
     await getInfo(countryName, placeName, days).then(function (response) {
-      console.log(`response is: ${JSON.stringify(response)}`);
       if (!(response === 404)) {
         hideData(infoEl);
         showData(resultEl);

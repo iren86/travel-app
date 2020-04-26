@@ -1,17 +1,15 @@
-// Common rules for tablet and desktop
-@media screen and (max-device-width: 1280px) {
-  footer {
-    grid-area: footer;
-    width: 100%;
-    background: #000;
-    color: white;
-    padding: 2em;
-    margin: 0;
-    position: absolute;
-    height: max-content;
+footer {
+  grid-area: footer;
+  width: 100%;
+  background: #000;
+  color: white;
+  padding: 2em;
+  margin: 0;
+  position: absolute;
+  height: max-content;
 
-    label {
-      font-size: 1.5em;
-    }
+  label {
+    font-size: 1.5em;
   }
 }
+

@@ -13,7 +13,8 @@ const cacheName = 'v1';
 const offlineFundamentals = [
   './dist/bundle.js',
   './dist/index.html',
-  './src/client/styles/'
+  './src/client/styles/',
+  './src/client/image/',
 ];
 
 self.addEventListener("install", function(event) {

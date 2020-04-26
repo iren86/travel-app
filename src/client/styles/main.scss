@@ -4,157 +4,155 @@ $font-stack: 'Oswald', sans-serif;
 $primary-font-size: 1em;
 $secondary-font-size: 1.5em;
 
-// Common rules for tablet and desktop
-@media screen and (max-device-width: 1280px) {
-  main {
-    grid-area: entry-data;
-    width: 100%;
-    height: 100%;
-    padding: 2em;
-    margin: 0;
+main {
+  grid-area: entry-data;
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+  margin: 0;
 
-    section#user-entry-data-block {
+  section#user-entry-data-block {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    background: #FFBE58;
+    border-radius: 1%;
+    box-shadow: 0 0 1em $primary-color;
+    width: 100%;
+    height: max-content;
+
+    #app-data-block {
       display: flex;
       flex-direction: column;
-      text-align: left;
-      background: #FFBE58;
-      border-radius: 1%;
-      box-shadow: 0 0 1em $primary-color;
-      width: 100%;
-      height: max-content;
+      padding-bottom: 2em;
+      margin-top: 2em;
+      margin-bottom: 2em;
 
-      #app-data-block {
+      label {
+        font-family: $font-stack;
+        font-size: $secondary-font-size;
+        margin-left: 1em;
+        margin-top: 1em;
+        color: $primary-color;
+      }
+
+      .info-text {
+        font-size: $primary-font-size;
+        color: $primary-color;
+        text-align: left;
+        padding: 1em;
+        font-style: italic;
+        margin-left: 0.5em;
+      }
+
+      #results {
         display: flex;
         flex-direction: column;
-        padding-bottom: 2em;
-        margin-top: 2em;
-        margin-bottom: 2em;
+        justify-content: center;
+        margin-left: 1em;
+        color: $secondary-color;
+        width: 100%;
+        height: 100%;
 
-        label {
-          font-family: $font-stack;
-          font-size: $secondary-font-size;
-          margin-left: 1em;
+        #img-container {
+          display: block;
+          width: 95%;
+          height: 100%;
+          object-fit: cover;
           margin-top: 1em;
-          color: $primary-color;
+          margin-bottom: 1em;
+
+          img {
+            width: 100%;
+            height: 50%;
+            padding: 0.5em;
+            border: 1px solid #ddd;
+            background: $secondary-color;
+          }
         }
 
-        .info-text {
-          font-size: $primary-font-size;
-          color: $primary-color;
-          text-align: left;
-          padding: 1em;
-          font-style: italic;
-          margin-left: 0.5em;
-        }
-
-        #results {
+        #info-container {
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          margin-left: 1em;
-          color: $secondary-color;
+          flex: 1 1 auto;
+          color: $primary-color;
           width: 100%;
-          height: 50%;
 
-          #img-container {
-            display: block;
-            width: 95%;
-            height: 100%;
-            object-fit: cover;
-            margin-top: 1em;
+          #country {
+            display: flex;
+            flex-flow: row;
+            padding-left: 0.5em;
             margin-bottom: 1em;
+            width: 100%;
+            justify-content: space-between;
 
-            img {
-              width: 100%;
-              height: 50%;
-              padding: 0.5em;
-              border: 1px solid #ddd;
-              background: $secondary-color;
+            .country-info {
+              text-align: left;
+              padding-right: 0.5em;
+              margin-left: 1em;
+              font-family: $font-stack;
+              font-size: $primary-font-size;
+              font-style: italic;
+              width: 80%;
             }
           }
 
-          #info-container {
+          #place {
             display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            color: $primary-color;
+            flex-flow: row;
+            padding-left: 0.5em;
+            margin-bottom: 1em;
             width: 100%;
+            justify-content: space-between;
 
-            #country {
-              display: flex;
-              flex-flow: row;
-              padding-left: 0.5em;
-              margin-bottom: 1em;
-              width: 100%;
-              justify-content: space-between;
-
-              .country-info {
-                text-align: left;
-                padding-right: 0.5em;
-                margin-left: 1em;
-                font-family: $font-stack;
-                font-size: $primary-font-size;
-                font-style: italic;
-                width: 80%;
-              }
-            }
-
-            #place {
-              display: flex;
-              flex-flow: row;
-              padding-left: 0.5em;
-              margin-bottom: 1em;
-              width: 100%;
-              justify-content: space-between;
-
-              .place-info {
-                text-align: left;
-                padding-right: 0.5em;
-                margin-left: 1em;
-                font-family: $font-stack;
-                font-size: $primary-font-size;
-                font-style: italic;
-                width: 80%;
-              }
-            }
-
-            #days {
-              display: flex;
-              flex-flow: row;
-              padding-left: 0.5em;
-              margin-bottom: 1em;
-              width: 100%;
-              justify-content: space-between;
-
-              .days-info {
-                text-align: left;
-                padding-right: 0.5em;
-                margin-left: 1em;
-                font-family: $font-stack;
-                font-size: $primary-font-size;
-                font-style: italic;
-                width: 80%;
-              }
-            }
-
-            label {
-              font-family: $font-stack;
-              font-size: $secondary-font-size;
-              margin-top: 1em;
-              margin-left: 0;
-              color: $primary-color;
-            }
-
-            #weather-container-list {
-              display: flex;
-              flex-flow: column;
+            .place-info {
+              text-align: left;
+              padding-right: 0.5em;
+              margin-left: 1em;
               font-family: $font-stack;
               font-size: $primary-font-size;
-              text-align: start;
+              font-style: italic;
+              width: 80%;
             }
+          }
+
+          #days {
+            display: flex;
+            flex-flow: row;
+            padding-left: 0.5em;
+            margin-bottom: 1em;
+            width: 100%;
+            justify-content: space-between;
+
+            .days-info {
+              text-align: left;
+              padding-right: 0.5em;
+              margin-left: 1em;
+              font-family: $font-stack;
+              font-size: $primary-font-size;
+              font-style: italic;
+              width: 80%;
+            }
+          }
+
+          label {
+            font-family: $font-stack;
+            font-size: $secondary-font-size;
+            margin-top: 1em;
+            margin-left: 0;
+            color: $primary-color;
+          }
+
+          #weather-container-list {
+            display: flex;
+            flex-flow: column;
+            font-family: $font-stack;
+            font-size: $primary-font-size;
+            text-align: start;
           }
         }
       }
     }
   }
 }
+
