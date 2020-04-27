@@ -1,3 +1,3 @@
-# Sentiment Analysis Project
+# Travel App Project
 
 ## Overview

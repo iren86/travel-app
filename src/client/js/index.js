@@ -1,11 +1,11 @@
 import '../styles/base.scss';
-import '../styles/base-desktop.scss';
+import '../styles/baseDesktop.scss';
 import '../styles/header.scss';
-import '../styles/header-desktop.scss';
+import '../styles/headerDesktop.scss';
 import '../styles/main.scss';
-import '../styles/main-desktop.scss';
+import '../styles/mainDesktop.scss';
 import '../styles/form.scss';
-import '../styles/form-desktop.scss';
+import '../styles/formDesktop.scss';
 import '../styles/footer.scss';
 import logo from '../image/logo.png';
 import { getContext } from './getContext.js';
