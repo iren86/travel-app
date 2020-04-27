@@ -9,7 +9,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
-  entry: './src/client/js/index.js',
+  entry: './src/client/js/client.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),

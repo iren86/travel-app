@@ -11,8 +11,6 @@ async function getWeatherbitInfo(response, projectData) {
   console.log(`weatherbit API url is ${weatherbitApiURL}`);
 
   const weatherbitData = await getApiInfo(weatherbitApiURL);
-  console.log(`weatherbit response API data is ${JSON.stringify(weatherbitData)}`);
-
   const allDataList = weatherbitData.response.data;
 
   allDataList.forEach((item, index) => {

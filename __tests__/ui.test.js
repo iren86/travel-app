@@ -6,7 +6,7 @@ const dom = new JSDOM();
 global.document = dom.window.document;
 global.window = dom.window;
 
-describe('validate UI test suite', () => {
+describe('UI test suite', () => {
   const createInitialTestEl = () => {
     document.body.innerHTML = `
        <input id="country_input" type="text" name="input">
@@ -18,29 +18,25 @@ describe('validate UI test suite', () => {
   const validClassName = 'valid';
   const invalidClassName = 'invalid';
 
-  // Check if field valid
-  it('check valid field flag', () => {
+  it('Field should be marked as valid', () => {
     countryNameEl.value = 'Amsterdam';
     validateInput(countryNameEl);
     expect(countryNameEl.className).toEqual(validClassName);
   });
 
-  // Check if field invalid
-  it('check invalid field flag', () => {
+  it('Field should be marked as invalid', () => {
     countryNameEl.value = '';
     validateInput(countryNameEl);
     expect(countryNameEl.className).toEqual(invalidClassName);
   });
 
-  // Check if field valid
-  it('check valid field flag', () => {
+  it('Field should be marked as valid', () => {
     daysEl.value = '16';
     validateNumInput(daysEl);
     expect(daysEl.className).toEqual(validClassName);
   });
 
-  // Check if infield valid
-  it('check invalid field flag', () => {
+  it('Field should be marked as invalid', () => {
     daysEl.value = '18';
     validateNumInput(daysEl);
     expect(daysEl.className).toEqual(invalidClassName);

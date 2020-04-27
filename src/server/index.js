@@ -1,9 +1,9 @@
 require('path');
 const express = require('express');
-const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-dotenv.config({ path: './process.env' });
 const getGeonamesInfo = require('./geonamesObject');
+const dotenv = require('dotenv');
+dotenv.config({ path: './process.env' });
 
 /**
  * Require Express to run server and routes
@@ -58,7 +58,7 @@ async function getInfo(request, response) {
   };
 
   await getGeonamesInfo(request, response, projectData);
-  console.log(`all extracted API data is ${JSON.stringify(projectData)}`);
+  console.log(`All extracted API data is ${JSON.stringify(projectData)}`);
 }
 
 app.get('/geo-info', getInfo);

@@ -1,12 +1,10 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-/**
- * Test the /GET route
- */
-describe('Server response test suite', () => {
+describe('API test suite', () => {
   let server;
   beforeEach(() => {
     server = require('../src/server/index.js', { bustCache: true });
@@ -18,7 +16,7 @@ describe('Server response test suite', () => {
   });
 
 // Test to get positive status code
-  it('should check status code from server', (done) => {
+  it('should return status 200', (done) => {
     chai.request(server)
       .get('/')
       .then((res) => {
@@ -29,7 +27,7 @@ describe('Server response test suite', () => {
   });
 
 // Test to get object
-  it('should check html from server', (done) => {
+  it('should return html', (done) => {
     chai.request(server)
       .get('/geo-info')
       .then((res) => {

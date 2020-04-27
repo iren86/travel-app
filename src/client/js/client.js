@@ -13,7 +13,7 @@ import { hideData, showData, updateUI } from './updateUI.js';
 import { subscribeInputEvents, validateInput, validateNumInput, isFieldValid } from './validateUI.js';
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
-  console.log(`Looks like we are in ${process.env.NODE_ENV} mode!`);
+  console.log(`You are in ${process.env.NODE_ENV} mode!`);
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../../worker.js').then(function (registration) {
       // Registration was successful
@@ -53,40 +53,37 @@ const onFormSubmitListener = async (e) => {
     const countryName = countryNameEl.value;
     const placeName = placeNameEl.value;
     const days = daysEl.value;
-    await getInfo(countryName, placeName, days).then(function (response) {
-      if (!(response === 404)) {
-        hideData(infoEl);
-        showData(resultEl);
-        updateUI(countryInfoEl, response.country);
-        updateUI(placeInfoEl, response.place);
-        updateUI(daysInfoEl, response.days);
+    const response = await getInfo(countryName, placeName, days);
+    if (!(response === 404)) {
+      hideData(infoEl);
+      showData(resultEl);
+      updateUI(countryInfoEl, response.country);
+      updateUI(placeInfoEl, response.place);
+      updateUI(daysInfoEl, response.days);
 
-        const weatherBlockCount = response.days;
-        const weatherDatetimeList = response.datetime;
-        const weatherHighTempList = response.high_temp;
-        const weatherLowTempList = response.low_temp;
-        const weatherIconList = response.weather_icon;
-        const weatherDescriptionList = response.weather_description;
+      const weatherBlockCount = response.days;
+      const weatherDatetimeList = response.datetime;
+      const weatherHighTempList = response.high_temp;
+      const weatherLowTempList = response.low_temp;
+      const weatherIconList = response.weather_icon;
+      const weatherDescriptionList = response.weather_description;
 
-        buildImageResultBlock(response.photo_url);
+      buildImageResultBlock(response.photo_url);
 
-        buildWeatherResultBlock(
-          weatherBlockCount,
-          weatherDatetimeList,
-          weatherHighTempList,
-          weatherLowTempList,
-          weatherIconList,
-          weatherDescriptionList
-        );
-      } else {
-        hideData(resultEl);
-        showData(infoEl);
-        infoEl.setAttribute('style', 'color: red;');
-        infoEl.textContent = `Couldn't find  such country or place. Please double check your input.
-        `;
-      }
-    });
-
+      buildWeatherResultBlock(
+        weatherBlockCount,
+        weatherDatetimeList,
+        weatherHighTempList,
+        weatherLowTempList,
+        weatherIconList,
+        weatherDescriptionList
+      );
+    } else {
+      hideData(resultEl);
+      showData(infoEl);
+      infoEl.setAttribute('style', 'color: red;');
+      infoEl.textContent = `Couldn't find  such country or place. Please double check your input.`;
+    }
   } else {
     hideData(resultEl);
     showData(infoEl);
@@ -120,7 +117,7 @@ const getInfo = async (country_name, place_name, days) => {
 };
 
 /**
- * Build result block
+ * Build Image block
  */
 const buildImageResultBlock = (url) => {
   locationImgEl.src = '';
@@ -132,7 +129,7 @@ const buildImageResultBlock = (url) => {
 };
 
 /**
- * Build result block
+ * Build Result block
  */
 const buildWeatherResultBlock = (
   count, DateList, highTempList, lowTempList, weatherIconList, weatherDescriptionList
@@ -190,7 +187,7 @@ const buildWeatherDateBlock = (DateValue) => {
 };
 
 /**
- * Build weather block
+ * Build Weather block
  */
 const buildWeatherInfoBlock = (highTempValue, lowTempValue, weatherIconValue, weatherDescriptionValue) => {
   const weatherInfoBlock = document.createElement('div');

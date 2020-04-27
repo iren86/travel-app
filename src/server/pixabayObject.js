@@ -11,7 +11,6 @@ async function getPixabayInfo(response, projectData) {
 
   const pixabay = await getApiInfo(pixabayApiURL);
   const allDataList = pixabay.response.hits[0];
-  console.log(`hits response API data is ${JSON.stringify(allDataList)}`);
   const pixabayPhotoUrl = allDataList.webformatURL;
   if (pixabayPhotoUrl) {
     console.log(`Photo Url is: ${pixabayPhotoUrl}`);

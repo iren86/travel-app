@@ -13,8 +13,6 @@ async function getGeonamesInfo(request, response, projectData) {
   console.log(`geoname API url is ${geonameApiURL}`);
 
   const geonameData = await getApiInfo(geonameApiURL);
-  console.log(`geoname response API data is ${JSON.stringify(geonameData)}`);
-
   if (geonameData.response.geonames.length > 0){
     const allDataList = geonameData.response.geonames[0];
 
