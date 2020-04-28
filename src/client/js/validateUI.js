@@ -1,4 +1,5 @@
 const { addClassName, removeClassName } = require('./updateUI');
+const moment = require('moment');
 
 const invalidClassName = 'invalid';
 const validClassName = 'valid';

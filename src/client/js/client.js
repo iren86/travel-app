@@ -28,11 +28,11 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'developme
 
 const logoImgEl = document.querySelector('#logo');
 logoImgEl.src = logo;
-logoImgEl.alt = "Logo";
+logoImgEl.alt = 'Logo';
 
 const blankImgEl = document.querySelector('#location-img');
 blankImgEl.src = blankImg;
-blankImgEl.alt = "Location photo";
+blankImgEl.alt = 'Location photo';
 
 window.addEventListener('load', function () {
   const {
@@ -71,8 +71,6 @@ window.addEventListener('load', function () {
     document.querySelector('#end_date_input').setAttribute('value', nowStr);
     document.querySelector('#end_date_input').setAttribute('min', nowStr);
   };
-
-  setDefaultValues();
 
   /**
    * Function called by event listener
@@ -132,11 +130,6 @@ window.addEventListener('load', function () {
       infoEl.textContent = `Please fill all required fields.`;
     }
   };
-
-  /**
-   * Event listener to add function to existing HTML DOM element
-   */
-  document.querySelector('#submit_button').addEventListener('click', onFormSubmitListener);
 
   /**
    * Function to GET data from server
@@ -289,6 +282,13 @@ window.addEventListener('load', function () {
 
     return weatherInfoBlock;
   };
+
+  setDefaultValues();
+
+  /**
+   * Event listener to add function to existing HTML DOM element
+   */
+  document.querySelector('#submit_button').addEventListener('click', onFormSubmitListener);
 });
 
 
