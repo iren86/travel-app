@@ -28,6 +28,8 @@ app.use(cors());
  */
 app.use(express.static('dist'));
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 /**
  * Setup Server
  */
