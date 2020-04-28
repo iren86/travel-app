@@ -13,10 +13,22 @@ const { subscribeInputEvents, validateInput, validateNumOfDaysInput, isFieldVali
 import logo from '../image/logo.png';
 import blankImg from '../image/no_photo.png';
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   console.log(`You are in ${process.env.NODE_ENV} mode!`);
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../../worker.js').then(function (registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function (err) {
+      // registration failed
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
+}
+if (process.env.NODE_ENV === 'production') {
+  console.log(`You are in ${process.env.NODE_ENV} mode!`);
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then(function (registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }).catch(function (err) {

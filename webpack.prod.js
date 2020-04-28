@@ -35,6 +35,13 @@ module.exports = {
         test: /\.png$/,
         loader: 'url-loader?mimetype=image/png'
       },
+      {
+        test: /\.worker.js$/i,
+        exclude: /node_modules/,
+        use: [
+          'worker-loader'
+        ]
+      },
     ]
   },
   plugins: [
