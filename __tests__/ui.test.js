@@ -10,11 +10,17 @@ describe('UI test suite', () => {
   const createInitialTestEl = () => {
     document.body.innerHTML = `
        <input id="country_input" type="text" name="input">
-       <input id="days_input" type="number">`;
+       <div class="entry_data_block">
+          <input id="start_date_input" type="date">
+       </div>
+       <div class="entry_data_block">
+          <input id="end_date_input" type="date" value="">
+       </div>`;
   };
   createInitialTestEl();
   const countryNameEl = document.querySelector('#country_input');
-  const daysEl = document.querySelector('#days_input');
+  const startDateEl = document.querySelector('#start_date_input');
+  const endDateEl = document.querySelector('#end_date_input');
   const validClassName = 'valid';
   const invalidClassName = 'invalid';
 
@@ -31,15 +37,19 @@ describe('UI test suite', () => {
   });
 
   it('Field should be marked as valid', () => {
-    daysEl.value = '16';
-    validateNumOfDaysInput(daysEl);
-    expect(daysEl.className).toEqual(validClassName);
+    startDateEl.value = '2020-04-28';
+    endDateEl.value = '2020-04-30';
+    validateNumOfDaysInput(startDateEl, endDateEl);
+    expect(startDateEl.className).toEqual(validClassName);
+    expect(endDateEl.className).toEqual(validClassName);
   });
 
   it('Field should be marked as invalid', () => {
-    daysEl.value = '18';
-    validateNumOfDaysInput(daysEl);
-    expect(daysEl.className).toEqual(invalidClassName);
+    startDateEl.value = '2020-04-28';
+    endDateEl.value = '2020-05-28';
+    validateNumOfDaysInput(startDateEl, endDateEl);
+    expect(startDateEl.className).toEqual(invalidClassName);
+    expect(endDateEl.className).toEqual(invalidClassName);
   });
 });
 
