@@ -27,6 +27,6 @@ on desktop, tablets, phones and covered with both UI and API tests.
 To get the application running locally:
 * clone this repo
 * `npm install` (to install all required dependencies)
+* `npm run build-prod` (run app in production mode)
 * `npm run start` (run server)
-* `npm run build-dev` (run app in development mode)
 * `npm run test` (run all tests)
