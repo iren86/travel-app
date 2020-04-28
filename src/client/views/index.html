@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Travel Planer App</title>
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     </head>
     <body>
         <div id="app">
@@ -26,9 +28,12 @@
                             <input id="place_input" type="text" name="input" placeholder="enter place here">
                         </div>
                         <div class="entry_data_block">
-                            <label for="days_input">Enter number of days here <span
+                            <label for="start_date_input">Start date: <span
+                                    class="required-text">current</span></label>
+                            <input id="start_date_input" type="date" disabled>
+                            <label for="end_date_input">End date: <span
                                     class="required-text">(required)</span></label>
-                            <input id="days_input" type="number" min="1" max="16" maxlength="2" placeholder="enter number of days here">
+                            <input id="end_date_input" type="date" value="">
                             <span class="input-helper">max 16 days</span>
                         </div>
                         <button id="submit_button" type="button">Submit</button>
@@ -40,7 +45,7 @@
                         </div>
                         <div id="results" style="display: none;">
                             <div id="img-container">
-                                <img id="location-img" alt="Location photo" src="./src/client/image/no_photo.png">
+                                <img id="location-img">
                             </div>
                             <div id="info-container">
                                 <div id="country">Your country:

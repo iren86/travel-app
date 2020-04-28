@@ -4,7 +4,8 @@
 const getContext = () => {
   const countryNameEl = document.querySelector('#country_input');
   const placeNameEl = document.querySelector('#place_input');
-  const daysEl = document.querySelector('#days_input');
+  const startDateEl = document.querySelector('#start_date_input');
+  const endDateEl = document.querySelector('#end_date_input');
   const infoEl = document.querySelector('.info-text');
   const resultEl = document.querySelector('#results');
   const countryInfoEl = document.querySelector('.country-info');
@@ -15,7 +16,8 @@ const getContext = () => {
   return {
     countryNameEl,
     placeNameEl,
-    daysEl,
+    startDateEl,
+    endDateEl,
     infoEl,
     resultEl,
     countryInfoEl,

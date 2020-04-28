@@ -31,14 +31,20 @@ const validateInput = (field) => {
 /**
  * Add the class when num field become invalid
  */
-const validateNumInput = (num_field, max_input = 16) => {
-  const parsedValue = parseInt(num_field.value, 10);
-  if (isNaN(parsedValue) || parsedValue > max_input) {
-    addClassName(num_field, invalidClassName);
-    removeClassName(num_field, validClassName);
+const validateNumOfDaysInput = (min_date, max_date, max_days = 16) => {
+  const start = moment(min_date.value);
+  const end = moment(max_date.value);
+  const days = end.diff(start, 'days') + 1;
+  if (days > max_days) {
+    addClassName(min_date, invalidClassName);
+    addClassName(max_date, invalidClassName);
+    removeClassName(min_date, validClassName);
+    removeClassName(max_date, validClassName);
   } else {
-    addClassName(num_field, validClassName);
-    removeClassName(num_field, invalidClassName);
+    addClassName(min_date, validClassName);
+    addClassName(max_date, validClassName);
+    removeClassName(min_date, invalidClassName);
+    removeClassName(max_date, invalidClassName);
   }
 };
 
@@ -61,4 +67,4 @@ const isFieldValid = (field) => {
   return flag === validClassName;
 };
 
-export { subscribeInputEvents, validateInput, validateNumInput, isFieldValid };
+export { subscribeInputEvents, validateInput, validateNumOfDaysInput, isFieldValid };

@@ -1,6 +1,6 @@
 require('babel-polyfill');
 const { JSDOM } = require('jsdom');
-const { validateInput, validateNumInput } = require('../src/client/js/validateUI.js');
+const { validateInput, validateNumOfDaysInput } = require('../src/client/js/validateUI.js');
 
 const dom = new JSDOM();
 global.document = dom.window.document;
@@ -32,13 +32,13 @@ describe('UI test suite', () => {
 
   it('Field should be marked as valid', () => {
     daysEl.value = '16';
-    validateNumInput(daysEl);
+    validateNumOfDaysInput(daysEl);
     expect(daysEl.className).toEqual(validClassName);
   });
 
   it('Field should be marked as invalid', () => {
     daysEl.value = '18';
-    validateNumInput(daysEl);
+    validateNumOfDaysInput(daysEl);
     expect(daysEl.className).toEqual(invalidClassName);
   });
 });
