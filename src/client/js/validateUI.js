@@ -1,4 +1,4 @@
-import { addClassName, removeClassName } from './updateUI';
+const { addClassName, removeClassName } = require('./updateUI');
 
 const invalidClassName = 'invalid';
 const validClassName = 'valid';

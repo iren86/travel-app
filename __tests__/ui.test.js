@@ -1,6 +1,6 @@
-import 'babel-polyfill';
-import { JSDOM } from 'jsdom';
-import { validateInput, validateNumInput } from '../src/client/js/validateUI.js';
+require('babel-polyfill');
+const { JSDOM } = require('jsdom');
+const { validateInput, validateNumInput } = require('../src/client/js/validateUI.js');
 
 const dom = new JSDOM();
 global.document = dom.window.document;

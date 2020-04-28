@@ -1,16 +1,16 @@
-import '../styles/base.scss';
-import '../styles/baseDesktop.scss';
-import '../styles/header.scss';
-import '../styles/headerDesktop.scss';
-import '../styles/main.scss';
-import '../styles/mainDesktop.scss';
-import '../styles/form.scss';
-import '../styles/formDesktop.scss';
-import '../styles/footer.scss';
+require('../styles/base.scss');
+require('../styles/baseDesktop.scss');
+require('../styles/header.scss');
+require('../styles/headerDesktop.scss');
+require('../styles/main.scss');
+require('../styles/mainDesktop.scss');
+require('../styles/form.scss');
+require('../styles/formDesktop.scss');
+require('../styles/footer.scss');
+const { getContext } = require('./getContext.js');
+const { hideData, showData, updateUI } = require('./updateUI.js');
+const { subscribeInputEvents, validateInput, validateNumInput, isFieldValid } = require('./validateUI.js');
 import logo from '../image/logo.png';
-import { getContext } from './getContext.js';
-import { hideData, showData, updateUI } from './updateUI.js';
-import { subscribeInputEvents, validateInput, validateNumInput, isFieldValid } from './validateUI.js';
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
   console.log(`You are in ${process.env.NODE_ENV} mode!`);
