@@ -7,6 +7,7 @@ require('../styles/mainDesktop.scss');
 require('../styles/form.scss');
 require('../styles/formDesktop.scss');
 require('../styles/footer.scss');
+require('../styles/footerDesktop.scss');
 const { getContext } = require('./getContext.js');
 const { hideData, showData, updateUI } = require('./updateUI.js');
 const { subscribeInputEvents, validateInput, validateNumOfDaysInput, isFieldValid } = require('./validateUI.js');
