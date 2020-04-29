@@ -62,12 +62,12 @@ main {
           margin-top: 1em;
           margin-bottom: 1em;
 
-          img {
+          .location-img {
             width: 100%;
             height: 50%;
             padding: 0.5em;
             border: 1px solid #ddd;
-            background: $secondary-color;
+            background: white;
           }
         }
 
@@ -149,6 +149,70 @@ main {
             font-family: $font-stack;
             font-size: $primary-font-size;
             text-align: start;
+
+            .weather-list-item {
+              display: flex;
+              flex-direction: column;
+              background: #FFBE58;
+              width: 95%;
+              padding-top: 1em;
+              list-style-type: none;
+              border-radius: 20%;
+
+              #weather-date-block {
+                display: block;
+                background: white;
+                width: 100%;
+                padding: 0.5em;
+                color: black;
+                font-family: Oswald, sans-serif;
+                font-size: 1em;
+              }
+
+              #weather-info-block {
+                display: flex;
+                flex-direction: row;
+                background: #36B9CA;
+                width: 100%;
+                margin-bottom: 1em;
+                padding-right: 1em;
+                color: black;
+                font-family: Oswald, sans-serif;
+                font-size: 1em;
+                justify-content: space-between;
+
+                .weather_icon {
+                  width: 5em;
+                  height: 5em;
+                  align-self: center;
+                  align-content: center;
+                  padding-left: 0.5em;
+                }
+
+                .high-temp-info {
+                  width: 25%;
+                  align-self: center;
+                  align-content: center;
+                  text-align: center;
+                }
+
+                .low-temp-info {
+                  width: 25%;
+                  align-self: center;
+                  align-content: center;
+                  text-align: center;
+                }
+
+                .weather-description {
+                  width: 25%;
+                  align-self: center;
+                  align-content: center;
+                  text-align: center;
+                }
+              }
+            }
+
+
           }
         }
       }

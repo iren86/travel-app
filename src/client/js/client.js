@@ -169,10 +169,6 @@ window.addEventListener('load', function () {
   const buildImageResultBlock = (url) => {
     locationImgEl.src = '';
     locationImgEl.src = url;
-    locationImgEl.setAttribute(
-      'style',
-      'width: 100%; height: 50%; padding: 0.5em; border: 1px solid #ddd; background: white;'
-    );
   };
 
   /**
@@ -190,16 +186,6 @@ window.addEventListener('load', function () {
       const fragment = document.createDocumentFragment();
       const weatherListItem = document.createElement('li');
       weatherListItem.setAttribute('class', `weather-list-item`);
-      weatherListItem.setAttribute(
-        'style',
-        'display: flex; ' +
-        'flex-direction: column; ' +
-        'background: #FFBE58; ' +
-        'width: 95%; ' +
-        'padding-top: 1em; ' +
-        'list-style-type: none; ' +
-        'border-radius: 20%; '
-      );
 
       const weatherDateBlock = buildWeatherDateBlock(DateList[i][i]);
 
@@ -219,16 +205,6 @@ window.addEventListener('load', function () {
     const weatherDateBlock = document.createElement('div');
     weatherDateBlock.setAttribute('id', 'weather-date-block');
     weatherDateBlock.textContent = `Date: ${DateValue}`;
-    weatherDateBlock.setAttribute(
-      'style',
-      'display: block; ' +
-      'background: white; ' +
-      'width: 100%; ' +
-      'padding: 0.5em; ' +
-      'color: black; ' +
-      'font-family: Oswald, sans-serif;' +
-      'font-size: 1em; '
-    );
 
     return weatherDateBlock;
   };
@@ -239,53 +215,24 @@ window.addEventListener('load', function () {
   const buildWeatherInfoBlock = (highTempValue, lowTempValue, weatherIconValue, weatherDescriptionValue) => {
     const weatherInfoBlock = document.createElement('div');
     weatherInfoBlock.setAttribute('id', 'weather-info-block');
-    weatherInfoBlock.setAttribute(
-      'style',
-      'display: flex;' +
-      'flex-direction : row; ' +
-      'background: #36B9CA; ' +
-      'width: 100%; ' +
-      'margin-bottom: 1em; ' +
-      'padding-right: 1em; ' +
-      'color: black; ' +
-      'font-family: Oswald, sans-serif;' +
-      'font-size: 1em; ' +
-      'justify-content: space-between'
-    );
 
     const fragment = document.createDocumentFragment();
     const weatherIcon = document.createElement('img');
     weatherIcon.setAttribute('class', 'weather_icon');
     weatherIcon.alt = 'Weather icon';
     weatherIcon.src = weatherIconValue;
-    weatherIcon.setAttribute(
-      'style',
-      'width: 5em; height: 5em; align-self: center; align-content: center; padding-left: 0.5em;'
-    );
 
     const highTempInfo = document.createElement('div');
     highTempInfo.setAttribute('class', 'high-temp-info');
     highTempInfo.textContent = `${highTempValue} ` + 'ºC';
-    highTempInfo.setAttribute(
-      'style',
-      'width: 25%; align-self: center; align-content: center; text-align: center;'
-    );
 
     const lowTempInfo = document.createElement('div');
     lowTempInfo.setAttribute('class', 'low-temp-info');
     lowTempInfo.textContent = `${lowTempValue} ` + 'ºC';
-    lowTempInfo.setAttribute(
-      'style',
-      'width: 25%; align-self: center; align-content: center; text-align: center;'
-    );
 
     const weatherDescription = document.createElement('div');
     weatherDescription.setAttribute('class', 'weather-description');
     weatherDescription.textContent = weatherDescriptionValue;
-    weatherDescription.setAttribute(
-      'style',
-      'width: 25%; align-self: center; align-content: center; text-align: center;'
-    );
 
     fragment.appendChild(weatherIcon);
     fragment.appendChild(highTempInfo);
