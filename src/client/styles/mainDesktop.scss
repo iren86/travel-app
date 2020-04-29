@@ -1,7 +1,8 @@
 @media screen and (min-width: 1281px) {
   main {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    width: calc(100% - 2em);
+    justify-self: center;
 
     section#user-entry-data-block {
       flex-direction: row;
